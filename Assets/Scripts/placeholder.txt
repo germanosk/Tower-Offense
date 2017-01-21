@@ -1,1 +1,0 @@
-File createde to maintain folder structure in git, remove it as soon you put content in this folder.
