@@ -9,6 +9,8 @@ namespace BeardTwins.TO
         public int prize;
 
         protected Animator animator;
+        
+
         void Start()
         {
             animator = GetComponent<Animator>();
@@ -16,16 +18,20 @@ namespace BeardTwins.TO
 
         public bool ApplyDamage(float damage)
         {
-            animator.SetTrigger("toAttack");
-            life -= damage;
-
-            bool result = life <= 0.0f;
-            if (result)
+            bool isDead = life <= 0.0f;
+            if (!isDead)
             {
-                animator.SetTrigger("Destroy");
-                GameController.Instance.AddValue(prize);
+
+                animator.SetTrigger("toAttack");
+                life -= damage;
+                isDead = life <= 0.0f;
+                if (isDead)
+                {
+                    animator.SetTrigger("Destroy");
+                    GameController.Instance.AddValue(prize);
+                }
             }
-            return result;
+            return isDead;
         }
         
     }

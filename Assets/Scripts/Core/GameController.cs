@@ -5,9 +5,51 @@ namespace BeardTwins.TO
 {
     public class GameController : Singleton<GameController>
     {
+        private Player player;
+        private SpawnController spawnController;
+        private UIController uiController;
+
+        private Squad tempSquad;
+        void Awake()
+        {
+            player = GetComponent<Player>();
+            spawnController = GetComponent<SpawnController>();
+            uiController = GetComponent<UIController>();
+        }
+
         public void AddValue(int ammount)
         {
-            Debug.Log("Player won $" + ammount);
+            player.resources += ammount;
+            uiController.UpdateResourcesText(player.resources);
+        }
+
+        public void Play()
+        {
+            player.waveCount++;
+            spawnController.Play();
+            uiController.UpdateWaveText(player.waveCount);
+            uiController.ActivePlayerUI(false);
+        }
+
+        public void Buy(Squad squad, int cost)
+        {
+            if ( player.resources -cost >=0)
+            {
+                player.resources -= cost;
+                uiController.UpdateResourcesText(player.resources);
+                tempSquad = squad;
+
+            }
+        }
+
+        public Squad RequestSquad()
+        {
+            Squad result = tempSquad;
+            if( tempSquad != null)
+            {
+                tempSquad = null;
+            }
+            return result;
         }
     }
 }

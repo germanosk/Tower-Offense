@@ -2,14 +2,18 @@
 
 namespace BeardTwins.TO
 {
-    public class Singleton<T>: MonoBehaviour where T : class, new()
+    public class Singleton<T>: MonoBehaviour where T : MonoBehaviour
     {
-        static protected T instance = new T();
-
+        static protected T instance;
+        
         static public T Instance
         {
             get
             {
+                if (instance == null)
+                {
+                    instance = (T)FindObjectOfType(typeof(T));
+                }
                 return instance;
             }
         }
