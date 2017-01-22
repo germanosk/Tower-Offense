@@ -1539,6 +1539,7 @@ GameObject:
   - component: {fileID: 137830836}
   - component: {fileID: 137830837}
   - component: {fileID: 137830838}
+  - component: {fileID: 137830839}
   m_Layer: 5
   m_Name: ThirdDialog
   m_TagString: Untagged
@@ -1590,6 +1591,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bdab890b71ba4e48af16842ebcb0c93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &137830839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 137830835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fabbe94048ec2ae48b9235dd29e2a6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &140345592
