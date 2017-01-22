@@ -454,8 +454,8 @@ MonoBehaviour:
   - {fileID: 114172506515970828}
   - {fileID: 114402110264587370}
   - {fileID: 114926612784643616}
-  speed: 1.1
-  rateOfAtack: 1
+  speed: 0.75
+  atackInterval: 4
   damage: 1
   armor: 0
   life: 6

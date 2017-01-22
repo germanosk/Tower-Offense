@@ -22,9 +22,11 @@ GameObject:
   - component: {fileID: 212837162338720538}
   - component: {fileID: 61716296556309366}
   - component: {fileID: 114853082392113332}
+  - component: {fileID: 114948603335341590}
+  - component: {fileID: 95184010094471836}
   m_Layer: 0
   m_Name: Barn
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1370623308844560}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.077928, y: 0.005105734, z: 0}
+  m_LocalPosition: {x: -0.71, y: -1.087, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,9 +55,26 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.03213635, y: -0.10297203}
   serializedVersion: 2
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 0.58427274, y: 0.40405595}
+--- !u!95 &95184010094471836
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1370623308844560}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ca56c2d805e3c4d44a3b8bb7cdd072fd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114853082392113332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -67,7 +86,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1dcea4538578394f9ff3e2ce892b8ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitPrefab: {fileID: 0}
+  squadPrefab: {fileID: 114906616867738074, guid: 1693a9cf4a2d2104bbc1e7737d989c8f,
+    type: 2}
+  dirSpawnAngle: 45
+  distanceSpawn: 1.18
+  waypoints: []
+--- !u!114 &114948603335341590
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1370623308844560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72dda6f732ca50d4898e74aba05b4bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 5
+  prize: 150
 --- !u!212 &212837162338720538
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -98,7 +134,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: bc58ba156eb94254b8b12ffc66c372dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

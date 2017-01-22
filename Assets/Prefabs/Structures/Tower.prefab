@@ -53,9 +53,11 @@ GameObject:
   - component: {fileID: 4956446930853026}
   - component: {fileID: 61569152294235764}
   - component: {fileID: 114763808547772040}
+  - component: {fileID: 114095339547616078}
+  - component: {fileID: 95143110503267304}
   m_Layer: 0
   m_Name: Tower
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,9 +114,39 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0.07}
+  m_Offset: {x: 0, y: -0.116573095}
   serializedVersion: 2
-  m_Size: {x: 0.44, y: 0.84}
+  m_Size: {x: 0.44, y: 0.46685588}
+--- !u!95 &95143110503267304
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1181616074840264}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ca56c2d805e3c4d44a3b8bb7cdd072fd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114095339547616078
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1181616074840264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72dda6f732ca50d4898e74aba05b4bad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  life: 10
+  prize: 200
 --- !u!114 &114763808547772040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,9 +158,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1dcea4538578394f9ff3e2ce892b8ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  squadPrefab: {fileID: 114378054542814312, guid: 5ecab6222bfdff441b79eb8b143b2b28,
+  squadPrefab: {fileID: 114906616867738074, guid: 1693a9cf4a2d2104bbc1e7737d989c8f,
     type: 2}
   dirSpawnAngle: 90
+  distanceSpawn: 1.5
+  waypoints: []
 --- !u!212 &212369441975538434
 SpriteRenderer:
   m_ObjectHideFlags: 1

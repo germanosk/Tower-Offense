@@ -8,13 +8,13 @@ namespace BeardTwins.TO
         public List<Unit> units;
 
         public float speed;
-        public float rateOfAtack;
+        [Tooltip("How many seconds should wait for the next atack")]
+        public float atackInterval;
         public float damage;
         public float armor;
         public float life;
 
         protected float nextAtackTime;
-        protected float atackInterval;
 
         protected int destinationId = -1;
 
@@ -22,17 +22,18 @@ namespace BeardTwins.TO
 
         protected new Rigidbody2D rigidbody2D;
 
+        protected Animator animator;
+
         public List<Vector3> waypoints;
 
         public void Start()
         {
-
+            animator = GetComponent<Animator>();
             rigidbody2D = GetComponent<Rigidbody2D>();
             if (waypoints.Count > 0)
             {
                 destinationId = 0;
             }
-            atackInterval = rateOfAtack/60.0f;
 
         }
 
@@ -64,7 +65,12 @@ namespace BeardTwins.TO
         public bool ApplyDamage(float damage)
         {
             life -= damage - armor;
-            return life <= 0.0f;
+            bool result = life <= 0.0f;
+            if (result)
+            {
+                animator.SetTrigger("Die");
+            }
+            return result;
         }
 
         public void Atack()
@@ -73,28 +79,46 @@ namespace BeardTwins.TO
             if (currentTarget.ApplyDamage(damage))
             {
                 currentTarget = null;
+                rigidbody2D.isKinematic = false;
+                
+                animator.SetTrigger("Move");
             }
         }
 
-        public void Disable()
+        public void AquireTarget(IDamageable target)
         {
-            gameObject.SetActive(false);
+            animator.SetTrigger("Atack");
+            rigidbody2D.velocity = Vector2.zero;
+            rigidbody2D.isKinematic = true;
+            currentTarget = target;
+            Atack();
         }
-
+        
         public void OnCollisionEnter2D(Collision2D coll)
         {
             if(currentTarget == null)
             {
-                if (coll.gameObject.tag == gameObject.tag)
+                if (coll.gameObject.CompareTag("Enemy"))
                 {
-                    rigidbody2D.velocity = Vector2.zero;
-                    currentTarget = coll.gameObject.GetComponent<Squad>() as IDamageable;
-                    Atack();
+                    Squad enemy = coll.gameObject.GetComponent<Squad>();
+                    AquireTarget(enemy);
+                    enemy.AquireTarget(this);
 
                     Debug.Log(gameObject.name + " velocity at collision " + rigidbody2D.velocity);
                 }
+                if (coll.gameObject.CompareTag("Building"))
+                {
+                    Building enemy = coll.gameObject.GetComponent<Building>();
+                    AquireTarget(enemy);
+
+                    Debug.Log(gameObject.name + " is attackin " + coll.gameObject.name);
+                }
             }
 
+        }
+        public void Dispose()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

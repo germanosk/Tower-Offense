@@ -2893,7 +2893,7 @@ AnimationClip:
   m_IsEmpty: 0
   m_Events:
   - time: 0.5
-    functionName: 
+    functionName: Dispose
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
