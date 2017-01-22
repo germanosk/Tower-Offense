@@ -62,7 +62,7 @@ namespace BeardTwins.TO
         public void SquadDown()
         {
             squadCount--;
-            if(squadCount <= 0)
+            if (squadCount <= 0)
             {
                 squadCount = 0;
                 uiController.ActivePlayerUI(true);
