@@ -38,7 +38,8 @@ namespace BeardTwins.TO
                 player.resources -= cost;
                 uiController.UpdateResourcesText(player.resources);
                 tempSquad = squad;
-
+                uiController.ActivePlayerUI(false);
+                spawnController.WaitingDrop(true);
             }
         }
 
@@ -48,8 +49,15 @@ namespace BeardTwins.TO
             if( tempSquad != null)
             {
                 tempSquad = null;
+                uiController.ActivePlayerUI(true);
+                spawnController.WaitingDrop(false);
             }
             return result;
+        }
+
+        public void Victory()
+        {
+            uiController.Victory();
         }
     }
 }

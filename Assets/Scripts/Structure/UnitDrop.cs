@@ -12,6 +12,14 @@ namespace BeardTwins.TO {
 
         public List<Transform> waypoints;
 
+        private SpriteRenderer spriteRenderer;
+
+        void Awake()
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.enabled = false;
+        }
+
         public Vector3 SpawnDir
         {
             get { return Quaternion.Euler(0, 0, dirSpawnAngle) * transform.right; }
@@ -52,12 +60,20 @@ namespace BeardTwins.TO {
 
         void OnMouseDown()
         {
-            Squad squad = GameController.Instance.RequestSquad();
-
-            if(squad != null)
+            if(spriteRenderer.enabled )
             {
-                squadPrefabs.Add(squad);
+                Squad squad = GameController.Instance.RequestSquad();
+
+                if(squad != null)
+                {
+                    squadPrefabs.Add(squad);
+                }
             }
+        }
+
+        public void WaitingDrop(bool active)
+        {
+            spriteRenderer.enabled = active;
         }
     }
 }

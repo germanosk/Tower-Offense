@@ -15,5 +15,13 @@ namespace BeardTwins.TO
                 drop.SpawnSquad();
             }
         }
+
+        public void WaitingDrop(bool active)
+        {
+            foreach (UnitDrop drop in spawner)
+            {
+                drop.WaitingDrop(active);
+            }
+        }
     }
 }

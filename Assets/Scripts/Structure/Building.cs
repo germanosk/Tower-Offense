@@ -9,6 +9,8 @@ namespace BeardTwins.TO
         public int prize;
 
         protected Animator animator;
+
+        public bool isTower =false;
         
 
         void Start()
@@ -29,6 +31,10 @@ namespace BeardTwins.TO
                 {
                     animator.SetTrigger("Destroy");
                     GameController.Instance.AddValue(prize);
+                    if (isTower)
+                    {
+                        GameController.Instance.Victory();
+                    }
                 }
             }
             return isDead;

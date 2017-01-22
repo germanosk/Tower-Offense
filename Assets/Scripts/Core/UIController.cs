@@ -9,6 +9,8 @@ public class UIController : MonoBehaviour {
 
     public GameObject playerUI;
 
+    public GameObject victoryUI;
+
     public void UpdateWaveText(int count)
     {
         wavesText.text = count.ToString();
@@ -21,5 +23,10 @@ public class UIController : MonoBehaviour {
     public void ActivePlayerUI(bool active)
     {
         playerUI.SetActive(active);
+    }
+
+    public void Victory()
+    {
+        victoryUI.SetActive(true);
     }
 }
