@@ -10,6 +10,7 @@ namespace BeardTwins.TO
         private UIController uiController;
 
         private Squad tempSquad;
+        private int squadCount=0;
         void Awake()
         {
             player = GetComponent<Player>();
@@ -53,8 +54,19 @@ namespace BeardTwins.TO
                 tempSquad = null;
                 uiController.ActivePlayerUI(true);
                 spawnController.WaitingDrop(false);
+                squadCount++;
             }
             return result;
+        }
+
+        public void SquadDown()
+        {
+            squadCount--;
+            if(squadCount <= 0)
+            {
+                squadCount = 0;
+                uiController.ActivePlayerUI(true);
+            }
         }
 
         public void Victory()

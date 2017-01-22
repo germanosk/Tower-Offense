@@ -77,6 +77,11 @@ namespace BeardTwins.TO
                     if(currentTarget != null){
                         currentTarget.BackToDefault();
                     }
+
+                    if (gameObject.CompareTag("Player"))
+                    {
+                        GameController.Instance.SquadDown();
+                    }
                 }
             }
             return isDead;
