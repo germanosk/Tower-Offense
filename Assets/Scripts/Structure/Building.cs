@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BeardTwins.TO
@@ -39,6 +40,10 @@ namespace BeardTwins.TO
             }
             return isDead;
         }
-        
+
+        public void BackToDefault()
+        {
+            animator.SetTrigger("Default");
+        }
     }
 }

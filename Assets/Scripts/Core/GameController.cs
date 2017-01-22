@@ -15,6 +15,8 @@ namespace BeardTwins.TO
             player = GetComponent<Player>();
             spawnController = GetComponent<SpawnController>();
             uiController = GetComponent<UIController>();
+            uiController.UpdateResourcesText(player.resources);
+
         }
 
         public void AddValue(int ammount)

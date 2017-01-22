@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BeardTwins.TO
@@ -64,13 +65,21 @@ namespace BeardTwins.TO
 
         public bool ApplyDamage(float damage)
         {
-            life -= damage - armor;
-            bool result = life <= 0.0f;
-            if (result)
-            {
-                animator.SetTrigger("Die");
+            bool isDead = life <= 0.0f;
+            if (!isDead)
+            { 
+                life -= damage - armor;
+                isDead = life <= 0.0f;
+                if (isDead)
+                {
+                    animator.SetTrigger("Die");
+
+                    if(currentTarget != null){
+                        currentTarget.BackToDefault();
+                    }
+                }
             }
-            return result;
+            return isDead;
         }
 
         public void Atack()
@@ -96,7 +105,7 @@ namespace BeardTwins.TO
         
         public void OnCollisionEnter2D(Collision2D coll)
         {
-            if(currentTarget == null)
+            if(currentTarget == null && life > 0.0f)
             {
                 if (coll.gameObject.CompareTag("Enemy"))
                 {
@@ -119,6 +128,11 @@ namespace BeardTwins.TO
         public void Dispose()
         {
             gameObject.SetActive(false);
+        }
+
+        public void BackToDefault()
+        {
+            animator.SetTrigger("Default");
         }
     }
 }
