@@ -40838,8 +40838,8 @@ AnimationClip:
   m_IsEmpty: 0
   m_Events:
   - time: 26.1
-    functionName: CallGameScene
-    data: 
+    functionName: LoadScene
+    data: Tutorial
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
