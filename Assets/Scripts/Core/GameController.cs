@@ -28,10 +28,13 @@ namespace BeardTwins.TO
 
         public void Play()
         {
-            player.waveCount++;
-            spawnController.Play();
-            uiController.UpdateWaveText(player.waveCount);
-            uiController.ActivePlayerUI(false);
+            if(squadCount > 0)
+            {
+                player.waveCount++;
+                spawnController.Play();
+                uiController.UpdateWaveText(player.waveCount);
+                uiController.ActivePlayerUI(false);
+            }
         }
 
         public void Buy(Squad squad, int cost)

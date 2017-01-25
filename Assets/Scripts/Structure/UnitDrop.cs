@@ -32,16 +32,19 @@ namespace BeardTwins.TO {
         
         public void SpawnSquad()
         {
-            List<Vector3> points = new List<Vector3>();
-            foreach (Transform t in waypoints)
+            if(squadPrefabs.Count > 0)
             {
-                points.Add(t.position);
-            }
+                List<Vector3> points = new List<Vector3>();
+                foreach (Transform t in waypoints)
+                {
+                    points.Add(t.position);
+                }
 
-            Squad temp = Instantiate<Squad>(squadPrefabs[0]);
-            temp.transform.position = SpawnPos;
-            temp.waypoints = points;
-            squadPrefabs.RemoveAt(0);
+                Squad temp = Instantiate<Squad>(squadPrefabs[0]);
+                temp.transform.position = SpawnPos;
+                temp.waypoints = points;
+                squadPrefabs.RemoveAt(0);
+            }
         }
 
         void OnDrawGizmos()
