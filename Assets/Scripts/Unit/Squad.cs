@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BeardTwins.TO
 {
-    public class Squad : MonoBehaviour, IDamageable
+    public class Squad : IDamageable
     {
         public List<Unit> units;
 
@@ -13,7 +13,6 @@ namespace BeardTwins.TO
         public float atackInterval;
         public float damage;
         public float armor;
-        public float life;
 
         protected float nextAtackTime;
 
@@ -29,6 +28,7 @@ namespace BeardTwins.TO
 
         public void Start()
         {
+            base.Start();
             animator = GetComponent<Animator>();
             rigidbody2D = GetComponent<Rigidbody2D>();
             if (waypoints.Count > 0)
@@ -63,13 +63,13 @@ namespace BeardTwins.TO
             rigidbody2D.velocity = movement.normalized * speed;
         }
 
-        public bool ApplyDamage(float damage)
+        public override bool ApplyDamage(float damage)
         {
-            bool isDead = life <= 0.0f;
+            bool isDead = currentLife <= 0.0f;
             if (!isDead)
-            { 
-                life -= damage - armor;
-                isDead = life <= 0.0f;
+            {
+                currentLife -= damage - armor;
+                isDead = currentLife <= 0.0f;
                 if (isDead)
                 {
                     animator.SetTrigger("Die");
@@ -82,6 +82,10 @@ namespace BeardTwins.TO
                     {
                         GameController.Instance.SquadDown();
                     }
+                }
+                else
+                {
+                    UpdateLifeBar();
                 }
             }
             return isDead;
@@ -135,7 +139,7 @@ namespace BeardTwins.TO
             gameObject.SetActive(false);
         }
 
-        public void BackToDefault()
+        public override void BackToDefault()
         {
             animator.SetTrigger("Default");
         }

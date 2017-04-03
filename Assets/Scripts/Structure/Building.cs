@@ -1,33 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace BeardTwins.TO
 {
-    public class Building : MonoBehaviour, IDamageable
+    public class Building : IDamageable
     {
-        public float life;
         public int prize;
 
         protected Animator animator;
 
         public bool isTower =false;
-        
 
+        
         void Start()
         {
+            base.Start();
             animator = GetComponent<Animator>();
         }
 
-        public bool ApplyDamage(float damage)
+        public override bool ApplyDamage(float damage)
         {
-            bool isDead = life <= 0.0f;
+            bool isDead = currentLife <= 0.0f;
             if (!isDead)
             {
 
                 animator.SetTrigger("toAttack");
-                life -= damage;
-                isDead = life <= 0.0f;
+                currentLife -= damage;
+                isDead = currentLife <= 0.0f;
                 if (isDead)
                 {
                     animator.SetTrigger("Destroy");
@@ -37,11 +35,12 @@ namespace BeardTwins.TO
                         GameController.Instance.Victory();
                     }
                 }
+                UpdateLifeBar();
             }
             return isDead;
         }
 
-        public void BackToDefault()
+        public override void BackToDefault()
         {
             animator.SetTrigger("Default");
         }
